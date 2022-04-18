@@ -1,0 +1,28 @@
+{
+  "root": "apps/jbird-e2e",
+  "sourceRoot": "apps/jbird-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/jbird-e2e/cypress.json",
+        "devServerTarget": "jbird:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "jbird:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/jbird-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["jbird"]
+}

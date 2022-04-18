@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "jbird": "apps/jbird",
+    "jbird-e2e": "apps/jbird-e2e"
+  }
+}

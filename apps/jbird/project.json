@@ -1,0 +1,91 @@
+{
+  "projectType": "application",
+  "root": "apps/jbird",
+  "sourceRoot": "apps/jbird/src",
+  "prefix": "birdsorg",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/jbird",
+        "index": "apps/jbird/src/index.html",
+        "main": "apps/jbird/src/main.ts",
+        "polyfills": "apps/jbird/src/polyfills.ts",
+        "tsConfig": "apps/jbird/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/jbird/src/favicon.ico", "apps/jbird/src/assets"],
+        "styles": ["apps/jbird/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/jbird/src/environments/environment.ts",
+              "with": "apps/jbird/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "jbird:build:production"
+        },
+        "development": {
+          "browserTarget": "jbird:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "jbird:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/jbird/src/**/*.ts",
+          "apps/jbird/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/jbird"],
+      "options": {
+        "jestConfig": "apps/jbird/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
